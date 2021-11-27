@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "831496500584",
+    "firebase_url": "https://ev-otomasyon-sistemleri-4a718-default-rtdb.firebaseio.com",
+    "project_id": "ev-otomasyon-sistemleri-4a718",
+    "storage_bucket": "ev-otomasyon-sistemleri-4a718.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831496500584:android:ba84a92360bf34f7cc52dd",
+        "android_client_info": {
+          "package_name": "com.example.ev_otomasyon_sistemleri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831496500584-7t2vjg1mdfl6v9v1sb2v0bdgbgtlgvmk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ev_otomasyon_sistemleri",
+            "certificate_hash": "6dfd294482cc6b6790d613743d0b7baada795b88"
+          }
+        },
+        {
+          "client_id": "831496500584-88t2dspa4eli7ekt63gs8utn4r1093r7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCnvNmIQUSCzcde6K-B6DDjWLsj5bZcSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831496500584-88t2dspa4eli7ekt63gs8utn4r1093r7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
