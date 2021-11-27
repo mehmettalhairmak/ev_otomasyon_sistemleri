@@ -5,8 +5,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-
-import 'circle_progress.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'hex_color.dart';
 import 'main.dart';
 
 class Dashboard extends StatefulWidget {
@@ -14,8 +14,7 @@ class Dashboard extends StatefulWidget {
   _DashboardState createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard>
-    with TickerProviderStateMixin {
+class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -35,24 +34,9 @@ class _DashboardState extends State<Dashboard>
   _readTemperature() {
     return _database.child('sicaklik').onValue.listen((event) {
       temp = event.snapshot.value;
-      setState(() {
-        print(temp);
-      });
-      _DashboardInit(temp);
+      setState(() {});
       isLoading = true;
     });
-  }
-
-  _DashboardInit(var deger) {
-    progressController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 5000)); //5s
-
-    tempAnimation = Tween(begin: -50, end: deger).animate(progressController!)
-      ..addListener(() {
-        setState(() {});
-      });
-
-    progressController!.forward();
   }
 
   @override
@@ -74,31 +58,38 @@ class _DashboardState extends State<Dashboard>
               ? Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    CustomPaint(
-                      foregroundPainter:
-                          CircleProgress(tempAnimation!.value, true),
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text('Sıcaklık'),
-                              Text(
-                                '${tempAnimation!.value.toInt()}',
-                                style: TextStyle(
-                                    fontSize: 50, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '°C',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    SleekCircularSlider(
+                      appearance: CircularSliderAppearance(
+                          customWidths: CustomSliderWidths(
+                              trackWidth: 4,
+                              progressBarWidth: 20,
+                              shadowWidth: 40),
+                          customColors: CustomSliderColors(
+                              trackColor: HexColor('#ef6c00'),
+                              progressBarColor: HexColor('#ffb74d'),
+                              shadowColor: HexColor('#ffb74d'),
+                              shadowMaxOpacity: 0.5, //);
+                              shadowStep: 20),
+                          infoProperties: InfoProperties(
+                              bottomLabelStyle: TextStyle(
+                                  color: HexColor('#6DA100'),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
+                              bottomLabelText: 'Sıcaklık',
+                              mainLabelStyle: TextStyle(
+                                  color: HexColor('#54826D'),
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.w600),
+                              modifier: (double value) {
+                                return '$temp ˚C';
+                              }),
+                          startAngle: 90,
+                          angleRange: 360,
+                          size: 200.0,
+                          animationEnabled: true),
+                      min: 0,
+                      max: 100,
+                      initialValue: temp.toDouble(),
                     ),
                   ],
                 )
