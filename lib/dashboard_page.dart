@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, prefer_final_fields, unnecessary_new, non_constant_identifier_names, sized_box_for_whitespace, unnecessary_this
 
+import 'package:ev_otomasyon_sistemleri/circular_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'hex_color.dart';
 import 'main.dart';
 
 class Dashboard extends StatefulWidget {
+  static var temp;
+
   @override
   _DashboardState createState() => _DashboardState();
 }
@@ -20,11 +23,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   final _database = FirebaseDatabase.instance.reference();
 
-  AnimationController? progressController;
-  Animation? tempAnimation;
-  Animation<double>? humidityAnimation;
-  var temp;
-
   @override
   void initState() {
     super.initState();
@@ -33,7 +31,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   _readTemperature() {
     return _database.child('sicaklik').onValue.listen((event) {
-      temp = event.snapshot.value;
+      Dashboard.temp = event.snapshot.value;
       setState(() {});
       isLoading = true;
     });
@@ -43,7 +41,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gösterge Paneli'),
+        title: Text('Gösterge Paneli - Sıcaklık'),
         centerTitle: true,
         automaticallyImplyLeading: false,
         actions: [
@@ -54,49 +52,24 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         ],
       ),
       body: Center(
-          child: isLoading
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    SleekCircularSlider(
-                      appearance: CircularSliderAppearance(
-                          customWidths: CustomSliderWidths(
-                              trackWidth: 4,
-                              progressBarWidth: 20,
-                              shadowWidth: 40),
-                          customColors: CustomSliderColors(
-                              trackColor: HexColor('#ef6c00'),
-                              progressBarColor: HexColor('#ffb74d'),
-                              shadowColor: HexColor('#ffb74d'),
-                              shadowMaxOpacity: 0.5, //);
-                              shadowStep: 20),
-                          infoProperties: InfoProperties(
-                              bottomLabelStyle: TextStyle(
-                                  color: HexColor('#6DA100'),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600),
-                              bottomLabelText: 'Sıcaklık',
-                              mainLabelStyle: TextStyle(
-                                  color: HexColor('#54826D'),
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.w600),
-                              modifier: (double value) {
-                                return '$temp ˚C';
-                              }),
-                          startAngle: 90,
-                          angleRange: 360,
-                          size: 200.0,
-                          animationEnabled: true),
-                      min: 0,
-                      max: 100,
-                      initialValue: temp.toDouble(),
-                    ),
-                  ],
-                )
-              : Text(
-                  'Yükleniyor...',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                )),
+        child: isLoading
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  CircularSlider.createSlider(
+                      trackColor: "#ef6c00",
+                      progressBarColor: "#ffb74d",
+                      gostergeAdiRengi: "#000000",
+                      degerRengi: "#08f500",
+                      deger: Dashboard.temp,
+                      gostergeAdi: 'Sıcaklık'),
+                ],
+              )
+            : Text(
+                'Yükleniyor...',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+      ),
     );
   }
 
