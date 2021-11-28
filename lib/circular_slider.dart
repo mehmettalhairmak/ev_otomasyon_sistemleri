@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ev_otomasyon_sistemleri/dashboard_page_humidity.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'dashboard_page_temperature.dart';
@@ -12,13 +13,15 @@ class CircularSlider {
     required String gostergeAdi,
     required String gostergeAdiRengi,
     required var deger,
+    required String degerTipi,
     required String degerRengi,
+    required double initialValue,
   }) {
     return SleekCircularSlider(
       appearance: CircularSliderAppearance(
         customWidths: CustomSliderWidths(
           trackWidth: 4,
-          progressBarWidth: 20,
+          progressBarWidth: 15,
         ),
         customColors: CustomSliderColors(
           trackColor: HexColor(trackColor),
@@ -35,7 +38,7 @@ class CircularSlider {
               fontSize: 30.0,
               fontWeight: FontWeight.w600),
           modifier: (var value) {
-            return deger.toString() + " °C";
+            return deger.toString() + "$degerTipi";
           },
         ),
         startAngle: 90,
@@ -45,7 +48,7 @@ class CircularSlider {
       ),
       min: 0,
       max: 100,
-      initialValue: DashboardTemperature.temp.toDouble(),
+      initialValue: initialValue,
     );
   }
 }

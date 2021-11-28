@@ -9,14 +9,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'main.dart';
 
-class DashboardTemperature extends StatefulWidget {
-  static var temp;
+class DashboardHumidity extends StatefulWidget {
+  static var hum;
 
   @override
   _DashboardState createState() => _DashboardState();
 }
 
-class _DashboardState extends State<DashboardTemperature>
+class _DashboardState extends State<DashboardHumidity>
     with TickerProviderStateMixin {
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -26,12 +26,12 @@ class _DashboardState extends State<DashboardTemperature>
   @override
   void initState() {
     super.initState();
-    _readTemperature();
+    _readHumidity();
   }
 
-  _readTemperature() {
-    return _database.child('sicaklik').onValue.listen((event) {
-      DashboardTemperature.temp = event.snapshot.value;
+  _readHumidity() {
+    return _database.child('nem').onValue.listen((event) {
+      DashboardHumidity.hum = event.snapshot.value;
       setState(() {});
       isLoading = true;
     });
@@ -42,7 +42,7 @@ class _DashboardState extends State<DashboardTemperature>
     return Scaffold(
       drawer: DrawerPanel(),
       appBar: AppBar(
-        title: Text('Gösterge Paneli - Sıcaklık'),
+        title: Text('Gösterge Paneli - Nem'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -57,15 +57,15 @@ class _DashboardState extends State<DashboardTemperature>
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   CircularSlider.createSlider(
-                    trackColor: "#ef6c00",
-                    progressBarColor: "#ffb74d",
-                    gostergeAdiRengi: "#000000",
-                    degerRengi: "#4300fa",
-                    deger: DashboardTemperature.temp,
-                    degerTipi: ' °C',
-                    gostergeAdi: 'Sıcaklık',
-                    initialValue: DashboardTemperature.temp.toDouble(),
-                  ),
+                    trackColor: "#0004db",
+                    progressBarColor: '#08fa00',
+                    gostergeAdi: 'Nem',
+                    gostergeAdiRengi: '#000000',
+                    deger: DashboardHumidity.hum,
+                    degerTipi: ' %',
+                    degerRengi: '#ff1a1a',
+                    initialValue: DashboardHumidity.hum.toDouble(),
+                  )
                 ],
               )
             : Text(
