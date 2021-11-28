@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import 'dashboard_page.dart';
+import 'dashboard_page_temperature.dart';
 import 'hex_color.dart';
 
 class CircularSlider {
@@ -35,7 +35,7 @@ class CircularSlider {
               fontSize: 30.0,
               fontWeight: FontWeight.w600),
           modifier: (var value) {
-            return deger.toString();
+            return deger.toString() + " °C";
           },
         ),
         startAngle: 90,
@@ -45,7 +45,7 @@ class CircularSlider {
       ),
       min: 0,
       max: 100,
-      initialValue: Dashboard.temp.toDouble(),
+      initialValue: DashboardTemperature.temp.toDouble(),
     );
   }
 }

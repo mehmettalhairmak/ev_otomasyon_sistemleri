@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, prefer_final_fields, unnecessary_new, non_constant_identifier_names, sized_box_for_whitespace, unnecessary_this
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, prefer_final_fields, unnecessary_new, non_constant_identifier_names, sized_box_for_whitespace, unnecessary_this, use_key_in_widget_constructors
 
 import 'package:ev_otomasyon_sistemleri/circular_slider.dart';
+import 'package:ev_otomasyon_sistemleri/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,15 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'main.dart';
 
-class Dashboard extends StatefulWidget {
+class DashboardTemperature extends StatefulWidget {
   static var temp;
 
   @override
   _DashboardState createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
+class _DashboardState extends State<DashboardTemperature> with TickerProviderStateMixin {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -29,7 +31,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
 
   _readTemperature() {
     return _database.child('sicaklik').onValue.listen((event) {
-      Dashboard.temp = event.snapshot.value;
+      DashboardTemperature.temp = event.snapshot.value;
       setState(() {});
       isLoading = true;
     });
@@ -38,10 +40,10 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerPanel(),
       appBar: AppBar(
         title: Text('Gösterge Paneli - Sıcaklık'),
         centerTitle: true,
-        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: Icon(Icons.exit_to_app),
@@ -59,7 +61,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                       progressBarColor: "#ffb74d",
                       gostergeAdiRengi: "#000000",
                       degerRengi: "#08f500",
-                      deger: Dashboard.temp,
+                      deger: DashboardTemperature.temp,
                       gostergeAdi: 'Sıcaklık'),
                 ],
               )
