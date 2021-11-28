@@ -57,15 +57,16 @@ class _DashboardState extends State<DashboardHumidity>
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   CircularSlider.createSlider(
-                    trackColor: "#0004db",
-                    progressBarColor: '#08fa00',
-                    gostergeAdi: 'Nem',
-                    gostergeAdiRengi: '#000000',
-                    deger: DashboardHumidity.hum,
-                    degerTipi: ' %',
-                    degerRengi: '#ff1a1a',
-                    initialValue: DashboardHumidity.hum.toDouble(),
-                  )
+                      trackColor: "#0004db",
+                      progressBarColor: '#08fa00',
+                      gostergeAdi: 'Nem',
+                      gostergeAdiRengi: '#000000',
+                      deger: DashboardHumidity.hum,
+                      degerTipi: ' %',
+                      degerRengi: '#ff1a1a',
+                      initialValue: DashboardHumidity.hum.toDouble(),
+                      minValue: 0,
+                      maxValue: 100)
                 ],
               )
             : Text(

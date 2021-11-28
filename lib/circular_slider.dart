@@ -7,16 +7,17 @@ import 'dashboard_page_temperature.dart';
 import 'hex_color.dart';
 
 class CircularSlider {
-  static createSlider({
-    required String trackColor,
-    required String progressBarColor,
-    required String gostergeAdi,
-    required String gostergeAdiRengi,
-    required var deger,
-    required String degerTipi,
-    required String degerRengi,
-    required double initialValue,
-  }) {
+  static createSlider(
+      {required String trackColor,
+      required String progressBarColor,
+      required String gostergeAdi,
+      required String gostergeAdiRengi,
+      required var deger,
+      required String degerTipi,
+      required String degerRengi,
+      required double initialValue,
+      required double minValue,
+      required double maxValue}) {
     return SleekCircularSlider(
       appearance: CircularSliderAppearance(
         customWidths: CustomSliderWidths(
@@ -46,8 +47,8 @@ class CircularSlider {
         size: 200.0,
         animationEnabled: true,
       ),
-      min: 0,
-      max: 100,
+      min: minValue,
+      max: maxValue,
       initialValue: initialValue,
     );
   }

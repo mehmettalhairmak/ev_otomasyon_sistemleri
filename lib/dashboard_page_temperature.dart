@@ -57,15 +57,16 @@ class _DashboardState extends State<DashboardTemperature>
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   CircularSlider.createSlider(
-                    trackColor: "#ef6c00",
-                    progressBarColor: "#ffb74d",
-                    gostergeAdiRengi: "#000000",
-                    degerRengi: "#4300fa",
-                    deger: DashboardTemperature.temp,
-                    degerTipi: ' °C',
-                    gostergeAdi: 'Sıcaklık',
-                    initialValue: DashboardTemperature.temp.toDouble(),
-                  ),
+                      trackColor: "#ef6c00",
+                      progressBarColor: "#ffb74d",
+                      gostergeAdiRengi: "#000000",
+                      degerRengi: "#4300fa",
+                      deger: DashboardTemperature.temp,
+                      degerTipi: ' °C',
+                      gostergeAdi: 'Sıcaklık',
+                      initialValue: DashboardTemperature.temp.toDouble(),
+                      minValue: 0,
+                      maxValue: 60),
                 ],
               )
             : Text(
