@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:ev_otomasyon_sistemleri/dashboard_page_humidity.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import 'dashboard_page_temperature.dart';
 import 'hex_color.dart';
 
 class CircularSlider {
@@ -44,7 +42,7 @@ class CircularSlider {
         ),
         startAngle: 90,
         angleRange: 360,
-        size: 200.0,
+        size: 200,
         animationEnabled: true,
       ),
       min: minValue,

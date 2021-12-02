@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:ev_otomasyon_sistemleri/dashboard_page_humidity.dart';
-import 'package:ev_otomasyon_sistemleri/dashboard_page_temperature.dart';
+import 'package:ev_otomasyon_sistemleri/dashboard_page_tem-hum.dart';
 import 'package:flutter/material.dart';
 
 class DrawerPanel extends StatelessWidget {
@@ -25,23 +24,14 @@ class DrawerPanel extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.local_fire_department),
-            title: Text('Isı Sensörü'),
+            title: Text('Isı ve Nem Sensörü'),
             onTap: () {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (context) => DashboardTemperature()),
+                      builder: (context) => DashboardTemperatureHumidity()),
                   (Route<dynamic> route) => false);
             },
           ),
-          ListTile(
-            leading: Icon(Icons.water),
-            title: Text('Nem Sensörü'),
-            onTap: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => DashboardHumidity()),
-                  (Route<dynamic> route) => false);
-            },
-          )
         ],
       ),
     );

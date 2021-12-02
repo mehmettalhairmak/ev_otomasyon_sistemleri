@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'dashboard_page_temperature.dart';
+import 'dashboard_page_tem-hum.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key, final String? title}) : super(key: key);
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       print('Login');
 
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => DashboardTemperature()));
+          MaterialPageRoute(builder: (context) => DashboardTemperatureHumidity()));
     }
   }
 
