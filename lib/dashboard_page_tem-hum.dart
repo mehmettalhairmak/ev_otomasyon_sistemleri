@@ -106,6 +106,7 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
                               createKlimaNotification(
                                   'Klima Kapatılıyor...', Colors.red);
                             } else if (index == 1) {
+                              _database.child('klima').set(2);
                               createKlimaNotification(
                                   'Klima Otomatik...', Colors.blue);
                             } else if (index == 2) {
@@ -223,7 +224,7 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
     ).show();
   }
 
-  Future<Null> handleSignOut() async {
+  Future handleSignOut() async {
     this.setState(() {
       isLoading = true;
     });
@@ -239,4 +240,5 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
         MaterialPageRoute(builder: (context) => MyApp()),
         (Route<dynamic> route) => false);
   }
+
 }
