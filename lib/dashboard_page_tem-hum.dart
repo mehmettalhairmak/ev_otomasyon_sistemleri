@@ -23,6 +23,9 @@ class DashboardTemperatureHumidity extends StatefulWidget {
 class _DashboardState extends State<DashboardTemperatureHumidity>
     with TickerProviderStateMixin {
   bool isLoading = false;
+
+  int swtichInitialIndex = 1;
+
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   final _database = FirebaseDatabase.instance.reference();
@@ -40,7 +43,7 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
     return Scaffold(
       drawer: DrawerPanel(),
       appBar: AppBar(
-        title: Text('Sıcaklık - Nem'),
+        title: Text('Isı - Nem'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -89,7 +92,7 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
                           minWidth: 90.0,
                           minHeight: 50.0,
                           fontSize: 16.0,
-                          initialLabelIndex: 1,
+                          initialLabelIndex: swtichInitialIndex,
                           activeBgColors: [
                             [Colors.red],
                             [Colors.blue],
@@ -102,14 +105,17 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
                           labels: ['Kapalı', 'Oto', 'Açık'],
                           onToggle: (index) {
                             if (index == 0) {
+                              swtichInitialIndex = 0;
                               _database.child('klima').set(0);
                               createKlimaNotification(
                                   'Klima Kapatılıyor...', Colors.red);
                             } else if (index == 1) {
+                              swtichInitialIndex = 1;
                               _database.child('klima').set(2);
                               createKlimaNotification(
                                   'Klima Otomatik...', Colors.blue);
                             } else if (index == 2) {
+                              swtichInitialIndex = 2;
                               _database.child('klima').set(1);
                               createKlimaNotification(
                                   'Klima Açılıyor...', Colors.green);
@@ -133,7 +139,7 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
     AdvanceSnackBar(
       message: message,
       mode: 'ADVANCE',
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 1),
       textSize: 22,
       mHeight: 60,
       isIcon: true,
@@ -240,5 +246,4 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
         MaterialPageRoute(builder: (context) => MyApp()),
         (Route<dynamic> route) => false);
   }
-
 }

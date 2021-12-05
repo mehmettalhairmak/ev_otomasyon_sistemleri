@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, unnecessary_this, prefer_const_constructors_in_immutables
 
 import 'package:ev_otomasyon_sistemleri/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,27 +6,24 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:circular_profile_avatar/circular_profile_avatar.dart';
-import 'drawer.dart';
 
-class DashboardLight extends StatefulWidget {
-  DashboardLight({Key? key}) : super(key: key);
+class DashboardGas extends StatefulWidget {
+  DashboardGas({Key? key}) : super(key: key);
 
   @override
-  _DashboardLightState createState() => _DashboardLightState();
+  _DashboardGasState createState() => _DashboardGasState();
 }
 
-class _DashboardLightState extends State<DashboardLight> {
+class _DashboardGasState extends State<DashboardGas> {
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final _database = FirebaseDatabase.instance.reference();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerPanel(),
+      drawer: Drawer(),
       appBar: AppBar(
-        title: Text('Işık'),
+        title: Text('Gaz'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -35,33 +32,7 @@ class _DashboardLightState extends State<DashboardLight> {
           ),
         ],
       ),
-      body: Center(
-        child: StreamBuilder<Event>(
-            stream: _database.child('isik').onValue,
-            builder: (context, snapshot) {
-              if (snapshot.data!.snapshot.value == 1) {
-                return createLogo('light');
-              } else if (snapshot.data!.snapshot.value == 0) {
-                return createLogo('dark');
-              } else {
-                return Text(
-                  'Yükleniyor...',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                );
-              }
-            }),
-      ),
-    );
-  }
-
-  createLogo(String isikDurumu) {
-    return CircularProfileAvatar(
-      '',
-      child: Image.asset('assets/images/$isikDurumu.jpg'),
-      borderColor: Colors.transparent,
-      borderWidth: 5,
-      elevation: 2,
-      radius: 120,
+      body: Container(),
     );
   }
 
@@ -108,5 +79,4 @@ class _DashboardLightState extends State<DashboardLight> {
         MaterialPageRoute(builder: (context) => MyApp()),
         (Route<dynamic> route) => false);
   }
-
 }

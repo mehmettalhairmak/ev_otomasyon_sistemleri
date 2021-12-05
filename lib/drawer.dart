@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:ev_otomasyon_sistemleri/dashboard_page_gas.dart';
 import 'package:ev_otomasyon_sistemleri/dashboard_page_light.dart';
 import 'package:ev_otomasyon_sistemleri/dashboard_page_tem-hum.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class DrawerPanel extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: Colors.blue),
+            decoration: BoxDecoration(color: Colors.teal),
             child: Text(
               'Menü',
               style: TextStyle(
@@ -38,8 +39,16 @@ class DrawerPanel extends StatelessWidget {
             title: Text('Işık Sensörü'),
             onTap: () {
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (context) => DashboardLight()),
+                  MaterialPageRoute(builder: (context) => DashboardLight()),
+                  (Route<dynamic> route) => false);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.cloud),
+            title: Text('Gaz Sensörü'),
+            onTap: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => DashboardGas()),
                   (Route<dynamic> route) => false);
             },
           ),
