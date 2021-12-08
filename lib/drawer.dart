@@ -2,6 +2,7 @@
 
 import 'package:ev_otomasyon_sistemleri/dashboard_page_gas.dart';
 import 'package:ev_otomasyon_sistemleri/dashboard_page_light.dart';
+import 'package:ev_otomasyon_sistemleri/dashboard_page_movement.dart';
 import 'package:ev_otomasyon_sistemleri/dashboard_page_tem-hum.dart';
 import 'package:flutter/material.dart';
 
@@ -49,6 +50,15 @@ class DrawerPanel extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (context) => DashboardGas()),
+                  (Route<dynamic> route) => false);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.accessibility_new),
+            title: Text('Hareket Sensörü'),
+            onTap: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => DashboardMovement()),
                   (Route<dynamic> route) => false);
             },
           ),

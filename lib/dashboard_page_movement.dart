@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class DashboardGas extends StatefulWidget {
-  DashboardGas({Key? key}) : super(key: key);
+class DashboardMovement extends StatefulWidget {
+  DashboardMovement({Key? key}) : super(key: key);
 
   @override
-  _DashboardGasState createState() => _DashboardGasState();
+  _DashboardMovementState createState() => _DashboardMovementState();
 }
 
-class _DashboardGasState extends State<DashboardGas> {
+class _DashboardMovementState extends State<DashboardMovement> {
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final _database = FirebaseDatabase.instance.reference();
@@ -25,7 +25,7 @@ class _DashboardGasState extends State<DashboardGas> {
     return Scaffold(
       drawer: DrawerPanel(),
       appBar: AppBar(
-        title: Text('Gaz'),
+        title: Text('Hareket'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -36,13 +36,13 @@ class _DashboardGasState extends State<DashboardGas> {
       ),
       body: Center(
         child: StreamBuilder<Event>(
-            stream: _database.child('gaz').onValue,
+            stream: _database.child('hareket').onValue,
             builder: (context, snapshot) {
               if (snapshot.data!.snapshot.value == 1) {
-                return createLogo('gas_open');
+                return createGif();
               } else if (snapshot.data!.snapshot.value == 0) {
                 return Text(
-                  'Gaz Yok',
+                  'Hareket Yok',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 );
               } else {
@@ -56,12 +56,12 @@ class _DashboardGasState extends State<DashboardGas> {
     );
   }
 
-  createLogo(String gazDurumu) {
+  createGif() {
     return CircularProfileAvatar(
       '',
       child: Image.asset(
-        'assets/images/$gazDurumu.png',
-        scale: 3,
+        'assets/images/movement.gif',
+        fit: BoxFit.cover,
       ),
       borderColor: Colors.transparent,
       borderWidth: 5,
