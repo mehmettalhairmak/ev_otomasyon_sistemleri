@@ -39,11 +39,28 @@ class _DashboardGasState extends State<DashboardGas> {
             stream: _database.child('gaz').onValue,
             builder: (context, snapshot) {
               if (snapshot.data!.snapshot.value == 1) {
-                return createLogo('gas_open');
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    createLogo('gas_open'),
+                    Text(
+                      'Gaz Var',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                );
               } else if (snapshot.data!.snapshot.value == 0) {
-                return Text(
-                  'Gaz Yok',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    createLogo('gas_close'),
+                    Text(
+                      'Gaz Yok',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 );
               } else {
                 return Text(
@@ -61,7 +78,8 @@ class _DashboardGasState extends State<DashboardGas> {
       '',
       child: Image.asset(
         'assets/images/$gazDurumu.png',
-        scale: 3,
+        scale: 1.25,
+        
       ),
       borderColor: Colors.transparent,
       borderWidth: 5,

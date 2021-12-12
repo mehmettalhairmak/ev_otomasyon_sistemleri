@@ -24,7 +24,7 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
     with TickerProviderStateMixin {
   bool isLoading = false;
 
-  int swtichInitialIndex = 1;
+  int switchInitialIndex = 1;
 
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -92,7 +92,7 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
                           minWidth: 90.0,
                           minHeight: 50.0,
                           fontSize: 16.0,
-                          initialLabelIndex: swtichInitialIndex,
+                          initialLabelIndex: switchInitialIndex,
                           activeBgColors: [
                             [Colors.red],
                             [Colors.blue],
@@ -105,17 +105,17 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
                           labels: ['Kapalı', 'Oto', 'Açık'],
                           onToggle: (index) {
                             if (index == 0) {
-                              swtichInitialIndex = 0;
+                              switchInitialIndex = 0;
                               _database.child('klima').set(0);
                               createKlimaNotification(
                                   'Klima Kapatılıyor...', Colors.red);
                             } else if (index == 1) {
-                              swtichInitialIndex = 1;
+                              switchInitialIndex = 1;
                               _database.child('klima').set(2);
                               createKlimaNotification(
                                   'Klima Otomatik...', Colors.blue);
                             } else if (index == 2) {
-                              swtichInitialIndex = 2;
+                              switchInitialIndex = 2;
                               _database.child('klima').set(1);
                               createKlimaNotification(
                                   'Klima Açılıyor...', Colors.green);

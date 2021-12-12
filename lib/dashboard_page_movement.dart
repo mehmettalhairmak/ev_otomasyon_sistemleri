@@ -39,11 +39,28 @@ class _DashboardMovementState extends State<DashboardMovement> {
             stream: _database.child('hareket').onValue,
             builder: (context, snapshot) {
               if (snapshot.data!.snapshot.value == 1) {
-                return createGif();
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    createMovementLogo(),
+                    Text(
+                      'Hareket Var',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                );
               } else if (snapshot.data!.snapshot.value == 0) {
-                return Text(
-                  'Hareket Yok',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    createStayLogo(),
+                    Text(
+                      'Hareket Yok',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 );
               } else {
                 return Text(
@@ -56,12 +73,26 @@ class _DashboardMovementState extends State<DashboardMovement> {
     );
   }
 
-  createGif() {
+  createMovementLogo() {
     return CircularProfileAvatar(
       '',
       child: Image.asset(
         'assets/images/movement.gif',
         fit: BoxFit.cover,
+      ),
+      borderColor: Colors.transparent,
+      borderWidth: 5,
+      elevation: 2,
+      radius: 120,
+    );
+  }
+
+  createStayLogo() {
+    return CircularProfileAvatar(
+      '',
+      child: Image.asset(
+        'assets/images/stay.png',
+        scale: 1.5,
       ),
       borderColor: Colors.transparent,
       borderWidth: 5,
