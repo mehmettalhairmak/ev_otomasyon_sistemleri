@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import, unnecessary_null_comparison, prefer_const_constructors_in_immutables, must_call_super, prefer_final_fields, prefer_const_constructors, file_names, duplicate_import, avoid_print
 
+import 'package:ev_otomasyon_sistemleri/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -49,8 +50,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (firebaseUser != null) {
       print('Login');
 
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => DashboardTemperatureHumidity()));
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => MainPage()));
     }
   }
 

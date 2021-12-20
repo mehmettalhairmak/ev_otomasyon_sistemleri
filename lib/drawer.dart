@@ -4,6 +4,7 @@ import 'package:ev_otomasyon_sistemleri/dashboard_page_gas.dart';
 import 'package:ev_otomasyon_sistemleri/dashboard_page_light.dart';
 import 'package:ev_otomasyon_sistemleri/dashboard_page_movement.dart';
 import 'package:ev_otomasyon_sistemleri/dashboard_page_tem-hum.dart';
+import 'package:ev_otomasyon_sistemleri/main_page.dart';
 import 'package:flutter/material.dart';
 
 class DrawerPanel extends StatelessWidget {
@@ -24,6 +25,15 @@ class DrawerPanel extends StatelessWidget {
                 fontSize: 24,
               ),
             ),
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Ana Menü'),
+            onTap: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => MainPage()),
+                  (Route<dynamic> route) => false);
+            },
           ),
           ListTile(
             leading: Icon(Icons.local_fire_department),

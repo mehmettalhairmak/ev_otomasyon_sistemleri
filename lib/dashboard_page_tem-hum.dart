@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'main.dart';
 
 class DashboardTemperatureHumidity extends StatefulWidget {
@@ -57,29 +58,35 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CircularSlider.createSlider(
-                      trackColor: "#ef6c00",
-                      progressBarColor: "#ffb74d",
-                      gostergeAdiRengi: "#000000",
-                      degerRengi: "#4300fa",
-                      deger: DashboardTemperatureHumidity.temp,
-                      degerTipi: ' °C',
-                      gostergeAdi: 'Sıcaklık',
-                      initialValue:
-                          DashboardTemperatureHumidity.temp.toDouble(),
-                      minValue: 0,
-                      maxValue: 60),
-                  CircularSlider.createSlider(
-                      trackColor: "#0004db",
-                      progressBarColor: '#08fa00',
-                      gostergeAdi: 'Nem',
-                      gostergeAdiRengi: '#000000',
-                      deger: DashboardTemperatureHumidity.hum,
-                      degerTipi: ' %',
-                      degerRengi: '#ff1a1a',
-                      initialValue: DashboardTemperatureHumidity.hum.toDouble(),
-                      minValue: 0,
-                      maxValue: 100),
+                  CarouselSlider(
+                    items: [
+                      CircularSlider.createSlider(
+                          trackColor: "#ef6c00",
+                          progressBarColor: "#ffb74d",
+                          gostergeAdiRengi: "#000000",
+                          degerRengi: "#4300fa",
+                          deger: DashboardTemperatureHumidity.temp,
+                          degerTipi: ' °C',
+                          gostergeAdi: 'Sıcaklık',
+                          initialValue:
+                              DashboardTemperatureHumidity.temp.toDouble(),
+                          minValue: 0,
+                          maxValue: 60),
+                      CircularSlider.createSlider(
+                          trackColor: "#0004db",
+                          progressBarColor: '#08fa00',
+                          gostergeAdi: 'Nem',
+                          gostergeAdiRengi: '#000000',
+                          deger: DashboardTemperatureHumidity.hum,
+                          degerTipi: ' %',
+                          degerRengi: '#ff1a1a',
+                          initialValue:
+                              DashboardTemperatureHumidity.hum.toDouble(),
+                          minValue: 0,
+                          maxValue: 100),
+                    ],
+                    options: CarouselOptions(),
+                  ),
                   Center(
                     child: Column(
                       children: [
