@@ -33,7 +33,7 @@ class _DashboardLightState extends State<DashboardLight> {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.exit_to_app),
+            icon: Icon(Icons.exit_to_app), 
             onPressed: handleLoginOutPopup,
           ),
         ],

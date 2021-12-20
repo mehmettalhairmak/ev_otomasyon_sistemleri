@@ -44,7 +44,7 @@ class _DashboardGasState extends State<DashboardGas> {
                   children: [
                     createLogo('gas_open'),
                     Text(
-                      'Gaz Var',
+                      'Tehlikeli Gaz Var',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -56,7 +56,7 @@ class _DashboardGasState extends State<DashboardGas> {
                   children: [
                     createLogo('gas_close'),
                     Text(
-                      'Gaz Yok',
+                      'Tehlikeli Gaz Yok',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
