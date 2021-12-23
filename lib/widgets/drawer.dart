@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:ev_otomasyon_sistemleri/dashboard_page_gas.dart';
-import 'package:ev_otomasyon_sistemleri/dashboard_page_light.dart';
-import 'package:ev_otomasyon_sistemleri/dashboard_page_movement.dart';
-import 'package:ev_otomasyon_sistemleri/dashboard_page_tem-hum.dart';
-import 'package:ev_otomasyon_sistemleri/main_page.dart';
+
+import 'package:ev_otomasyon_sistemleri/pages/dashboard_page_gas.dart';
+import 'package:ev_otomasyon_sistemleri/pages/dashboard_page_light.dart';
+import 'package:ev_otomasyon_sistemleri/pages/dashboard_page_movement.dart';
+import 'package:ev_otomasyon_sistemleri/pages/dashboard_page_tem-hum.dart';
+import 'package:ev_otomasyon_sistemleri/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class DrawerPanel extends StatelessWidget {
@@ -31,7 +32,7 @@ class DrawerPanel extends StatelessWidget {
             title: Text('Ana Menü'),
             onTap: () {
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => MainPage()),
+                  MaterialPageRoute(builder: (context) => HomePage()),
                   (Route<dynamic> route) => false);
             },
           ),

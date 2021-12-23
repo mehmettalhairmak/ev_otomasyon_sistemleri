@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, prefer_final_fields, unnecessary_new, non_constant_identifier_names, sized_box_for_whitespace, unnecessary_this, use_key_in_widget_constructors, prefer_typing_uninitialized_variables,file_names, prefer_const_literals_to_create_immutables
 
-import 'package:ev_otomasyon_sistemleri/circular_slider.dart';
+import 'package:ev_otomasyon_sistemleri/main.dart';
+import 'package:ev_otomasyon_sistemleri/widgets/circular_slider.dart';
 import 'package:advance_notification/advance_notification.dart';
-import 'package:ev_otomasyon_sistemleri/drawer.dart';
+import 'package:ev_otomasyon_sistemleri/widgets/drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'main.dart';
 
 class DashboardTemperatureHumidity extends StatefulWidget {
   static var hum;

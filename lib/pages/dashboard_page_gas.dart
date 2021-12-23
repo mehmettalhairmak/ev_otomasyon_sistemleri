@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_this, prefer_const_constructors_in_immutables
 
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
-import 'package:ev_otomasyon_sistemleri/drawer.dart';
+import 'package:ev_otomasyon_sistemleri/widgets/drawer.dart';
 import 'package:ev_otomasyon_sistemleri/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-class DashboardMovement extends StatefulWidget {
-  DashboardMovement({Key? key}) : super(key: key);
+class DashboardGas extends StatefulWidget {
+  DashboardGas({Key? key}) : super(key: key);
 
   @override
-  _DashboardMovementState createState() => _DashboardMovementState();
+  _DashboardGasState createState() => _DashboardGasState();
 }
 
-class _DashboardMovementState extends State<DashboardMovement> {
+class _DashboardGasState extends State<DashboardGas> {
   bool isLoading = false;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final _database = FirebaseDatabase.instance.reference();
@@ -25,7 +25,7 @@ class _DashboardMovementState extends State<DashboardMovement> {
     return Scaffold(
       drawer: DrawerPanel(),
       appBar: AppBar(
-        title: Text('Hareket'),
+        title: Text('Gaz'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -36,15 +36,15 @@ class _DashboardMovementState extends State<DashboardMovement> {
       ),
       body: Center(
         child: StreamBuilder<Event>(
-            stream: _database.child('hareket').onValue,
+            stream: _database.child('gaz').onValue,
             builder: (context, snapshot) {
               if (snapshot.data!.snapshot.value == 1) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    createMovementLogo(),
+                    createLogo('gas_open'),
                     Text(
-                      'Hareket Var',
+                      'Tehlikeli Gaz Var',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -54,9 +54,9 @@ class _DashboardMovementState extends State<DashboardMovement> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    createStayLogo(),
+                    createLogo('gas_close'),
                     Text(
-                      'Hareket Yok',
+                      'Tehlikeli Gaz Yok',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -73,26 +73,13 @@ class _DashboardMovementState extends State<DashboardMovement> {
     );
   }
 
-  createMovementLogo() {
+  createLogo(String gazDurumu) {
     return CircularProfileAvatar(
       '',
       child: Image.asset(
-        'assets/images/movement.gif',
-        fit: BoxFit.cover,
-      ),
-      borderColor: Colors.transparent,
-      borderWidth: 5,
-      elevation: 2,
-      radius: 120,
-    );
-  }
-
-  createStayLogo() {
-    return CircularProfileAvatar(
-      '',
-      child: Image.asset(
-        'assets/images/stay.png',
-        scale: 1.5,
+        'assets/images/$gazDurumu.png',
+        scale: 1.25,
+        
       ),
       borderColor: Colors.transparent,
       borderWidth: 5,

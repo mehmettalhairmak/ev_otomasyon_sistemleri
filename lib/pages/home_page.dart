@@ -1,28 +1,34 @@
 // ignore_for_file: prefer_const_constructors,prefer_const_literals_to_create_immutables
 
-import 'package:ev_otomasyon_sistemleri/drawer.dart';
+import 'package:ev_otomasyon_sistemleri/widgets/drawer.dart';
 import 'package:ev_otomasyon_sistemleri/main.dart';
-import 'package:ev_otomasyon_sistemleri/panel_widget.dart';
+import 'package:ev_otomasyon_sistemleri/widgets/panel_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _HomePageState extends State<HomePage> {
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   String title =
       "Ev Otomasyon Sistemleri bir akıllı ev projesidir. Bu Ev Otomasyonu Sistemleri projemiz sayesinde elimizdeki telefon üzerinden evimizin o anki durumunu öğrenebiliriz.\nEvinizdeki ısı ve nem oranını anlık olarak takip edebilirsiniz. Örneğin evden uzaktasınız ve klimanız açık kalmış, Ev Otomasyon Sistemleri uygulamasıyla klimayı kapatabilirsiniz. Başka bir örnek ise evden çıktınız fakat ışıkların veya tüpün açık olup olmadığını hatırlamıyorsunuz, Ev Otomasyon Sistemleri uygulaması sayesinde ışıklarınızın ve havada tehlikeli gaz bulunup bulunmadığını görebiliyorsunuz ve uzaktan ışıklarınızı kontrol edebiliyorsunuz. Anlık olarak yüksek sıcaklık & tehlikeli gaz bulunan hava tespit edildiğinde telefonunuza anında bildirim geliyor.";
 
-  final GoogleSignIn googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
+    @override
+    void initState() {
+      super.initState();
+      //Bildirim.bildirimInit(context);
+    }
+
     return Scaffold(
       drawer: DrawerPanel(),
       appBar: AppBar(
