@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ev_otomasyon_sistemleri/config/hex_color.dart';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import 'hex_color.dart';
 
 class CircularSlider {
   static createSlider(

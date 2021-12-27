@@ -25,6 +25,10 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
     with TickerProviderStateMixin {
   bool isLoading = false;
 
+  double value = 50;
+
+  int sliderVisib = 0;
+
   int switchInitialIndex = 1;
 
   final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -112,22 +116,43 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
                           labels: ['Kapalı', 'Oto', 'Açık'],
                           onToggle: (index) {
                             if (index == 0) {
+                              sliderVisib = 0;
                               switchInitialIndex = 0;
                               _database.child('klima').set(0);
                               createKlimaNotification(
                                   'Klima Kapatılıyor...', Colors.red);
                             } else if (index == 1) {
+                              sliderVisib = 1;
                               switchInitialIndex = 1;
                               _database.child('klima').set(2);
                               createKlimaNotification(
                                   'Klima Otomatik...', Colors.blue);
                             } else if (index == 2) {
+                              sliderVisib = 0;
                               switchInitialIndex = 2;
                               _database.child('klima').set(1);
                               createKlimaNotification(
                                   'Klima Açılıyor...', Colors.green);
                             }
                           },
+                        ),
+                        Visibility(
+                          visible: visibility(),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 50.0),
+                            child: Slider(
+                              value: value,
+                              max: 50,
+                              divisions: 50,
+                              label: value.round().toString(),
+                              onChanged: (double newValue) {
+                                setState(() {
+                                  value = newValue;
+                                  _database.child('sicaklik_esik').set(value);
+                                });
+                              },
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -140,6 +165,14 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
               ),
       ),
     );
+  }
+
+  bool visibility() {
+    if (sliderVisib == 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   createKlimaNotification(String message, Color renk) {
