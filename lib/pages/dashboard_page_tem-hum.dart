@@ -25,7 +25,7 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
     with TickerProviderStateMixin {
   bool isLoading = false;
 
-  double value = 50;
+  int value = 50;
 
   int sliderVisib = 0;
 
@@ -141,13 +141,13 @@ class _DashboardState extends State<DashboardTemperatureHumidity>
                           child: Padding(
                             padding: const EdgeInsets.only(top: 50.0),
                             child: Slider(
-                              value: value,
+                              value: value.toDouble(),
                               max: 50,
                               divisions: 50,
                               label: value.round().toString(),
                               onChanged: (double newValue) {
                                 setState(() {
-                                  value = newValue;
+                                  value = newValue.toInt();
                                   _database.child('sicaklik_esik').set(value);
                                 });
                               },

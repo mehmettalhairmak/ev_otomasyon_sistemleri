@@ -23,11 +23,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    @override
-    void initState() {
-      super.initState();
-      //Bildirim.bildirimInit(context);
-    }
 
     return Scaffold(
       drawer: DrawerPanel(),
